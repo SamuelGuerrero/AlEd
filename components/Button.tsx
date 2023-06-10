@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
-import { PencilIcon, TrashIcon } from "@heroicons/react/solid"
+import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
 
 import classNames from "classnames";
 
@@ -16,7 +16,7 @@ type ButtonProps = DetailedHTMLProps<
     | "twitter"
     | "github"
     | "garbage"
-    | "edit"
+    | "edit";
 };
 
 export const Button = (props: ButtonProps) => {
@@ -30,7 +30,7 @@ export const Button = (props: ButtonProps) => {
       ? "text-white bg-[#c0885d] hover:bg-yellow-600 font-medium rounded-lg text-lg px-5 py-1.5 text-center inline-flex items-center mb-2"
       : null,
     variant === "tertiary"
-      ? "text-white border-yellow-600 border-2 rounded py-1.5 text-lg font-medium px-5 hover:cursor-pointer bg-transparent transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+      ? "text-black border-yellow-600 border-2 rounded py-1.5 text-lg font-medium px-5 hover:cursor-pointer bg-transparent transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
       : null,
     variant === "facebook"
       ? "text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
@@ -41,25 +41,17 @@ export const Button = (props: ButtonProps) => {
     variant === "github"
       ? "text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
       : null,
-      variant === "garbage"
-      ? "w-9 h-9 bg-rose-600 rounded flex items-center justify-center"
+    variant === "garbage"
+      ? "w-9 h-9 bg-rose-600 hover:bg-rose-600/70 rounded flex items-center justify-center"
       : null,
-      variant === "edit"
-      ? "w-9 h-9 bg-blue-500 rounded flex items-center justify-center"
+    variant === "edit"
+      ? "w-9 h-9 bg-blue-500 hover:bg-blue-500/70 rounded flex items-center justify-center"
       : null
   );
   return (
     <button {...rest} className={btnStyle}>
-      {
-        variant == 'garbage' ? (
-          <TrashIcon className="w-6 h-6" />
-        ) : undefined
-      }
-            {
-        variant == 'edit' ? (
-          <PencilIcon className="w-6 h-6" />
-        ) : undefined
-      }
+      {variant == "garbage" ? <TrashIcon className="w-6 h-6" /> : undefined}
+      {variant == "edit" ? <PencilIcon className="w-6 h-6" /> : undefined}
       {variant == "facebook" ? (
         <svg
           className="w-4 h-4 mr-2 -ml-1"
