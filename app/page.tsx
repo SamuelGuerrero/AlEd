@@ -13,6 +13,7 @@ export default function Home() {
           <Image
             className="rounded-md lg:w-[600px] sm:w-[400px] w-[calc(100%-2rem)] shadow-yellow-600 shadow-2xl"
             src={"/AlEd.png"}
+            priority={true}
             alt="AlEd Logo"
             width={600}
             height={400}
