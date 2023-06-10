@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { Button } from "./Button";
+import { useRouter } from "next/navigation";
 
 type UseCardProps = {
+  id: string;
   name: string;
   profession: string;
   urlImage: string;
@@ -16,6 +18,7 @@ type UseCardProps = {
 
 export const UserCard = (props: UseCardProps) => {
   const {
+    id,
     name,
     profession,
     urlImage,
@@ -27,20 +30,35 @@ export const UserCard = (props: UseCardProps) => {
     twitter,
     github,
   } = props;
+  const router = useRouter();
 
   return (
     <div className="w-full flex justify-center max-w-xl bg-black border border-gray-200 rounded-lg shadow-yellow-600 shadow-lg drop-shadow-2xl">
       <div className="flex flex-col mt-10 items-center w-4/5">
         <div className="flex w-full justify-between">
           <Button variant="edit" />
-          <Button variant="garbage" />
+          <Button
+            onClick={() => {
+              fetch(`https://aled-server.onrender.com/api/users/${id}`, {
+                method: "DELETE",
+              })
+                .then((res) => res.json())
+                .catch((error) => console.error("Error:", error))
+                .then((response) => console.log("Success:", response));
+                
+                setTimeout(() => {
+                  router.push("/users")
+                }, 1000);
+            }}
+            variant="garbage"
+          />
         </div>
         <Image
           className="rounded-full shadow-white shadow"
           src={urlImage}
           width={230}
           height={230}
-          alt="Emma"
+          alt={name}
         />
         <h1 className="text-3xl font-medium text-[#c0885d] mt-4">{name}</h1>
         <h1 className=" text-2xl font-thin mb-1">{profession}</h1>
