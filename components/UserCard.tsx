@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "./Button";
 import { useRouter } from "next/navigation";
+import { DialogCard } from "./DialogCard";
 
 type UseCardProps = {
   id: string;
@@ -36,22 +37,8 @@ export const UserCard = (props: UseCardProps) => {
     <div className="w-full flex justify-center max-w-xl bg-black border border-gray-200 rounded-lg shadow-yellow-600 shadow-lg drop-shadow-2xl">
       <div className="flex flex-col mt-10 items-center w-4/5">
         <div className="flex w-full justify-between">
-          <Button variant="edit" />
-          <Button
-            onClick={() => {
-              fetch(`https://aled-server.onrender.com/api/users/${id}`, {
-                method: "DELETE",
-              })
-                .then((res) => res.json())
-                .catch((error) => console.error("Error:", error))
-                .then((response) => console.log("Success:", response));
-                
-                setTimeout(() => {
-                  router.push("/users")
-                }, 1000);
-            }}
-            variant="garbage"
-          />
+          <Button onClick={()=> router.push(`/users/${id}`)} variant="edit" />
+          <DialogCard idUser={id} />
         </div>
         <Image
           className="rounded-full shadow-white shadow"
